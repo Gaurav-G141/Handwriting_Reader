@@ -1,7 +1,8 @@
 import torch
-import torch.nn as nn
-import torchvision
-import matplotlib.pyplot as plt
+import random
+
+
+torch.set_default_dtype(torch.float16)
 
 #read csv file
 print("Opening")
@@ -11,6 +12,9 @@ lines = file.readlines()
 print("Tensoring")
 all_tensors = []
 for line in lines:
+    if (random.randint(1,10000) == 10000):
+        break
+    #Convert each line to a tensor
     s = line.replace("\n","")
     s = s.split(",")
     s = [int(i) for i in s]
@@ -20,6 +24,6 @@ for line in lines:
     print(ans_tensor)
     all_tensors.append(tensor)
     all_tensors.append(ans_tensor)
-torch.save(all_tensors, "data.pt")
+torch.save(all_tensors, "smalldata.pt")
 
 

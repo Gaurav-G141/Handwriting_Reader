@@ -221,3 +221,4 @@ __marimo__/
 
 #Pytorch
 *.pt
+*.csv
