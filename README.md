@@ -11,3 +11,9 @@ An application to read and write handwriting
 **Code file overview**
 
 tensor_converter.py: Takes in the csv for the alphabet and converts to a large file of tensors
+
+colorizer.py: Used to convert an image to black-and-white
+
+**Test files used**
+
+Images for testing came from the AP English Literature and Composition Free Response samples
