@@ -226,3 +226,6 @@ __marimo__/
 *.jpeg
 *.jpg
 *.png
+#External files
+khash.h
+ksort.h

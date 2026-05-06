@@ -7,10 +7,10 @@ from PIL import Image
 import os, sys
 import matplotlib.pyplot as plt
 import json
-whiteness = {} #Standard dictionary of insertion speeds
-with open("whiteness.json", "r") as f:
-    whiteness = json.load(f) #Pre-calculated to avoid compute time of checking a dictionary
-whiteness = {int(w):whiteness[w] for w in whiteness.keys()}
+#whiteness = {} #Standard dictionary of insertion speeds
+#with open("whiteness.json", "r") as f:
+#    whiteness = json.load(f) #Pre-calculated to avoid compute time of checking a dictionary
+#whiteness = {int(w):whiteness[w] for w in whiteness.keys()}
 
 #By Claude, purely for testing and visualizing
 def graph_integers(integers: list[int]) -> None:
@@ -33,9 +33,12 @@ def colorize(im):
     pixels = im.load()
     width, height = im.size
     #Determine how "white" every pixel is, to denote a clear boundary
+    whiteness = {}
     for y in range(height):
         for x in range(width):
-            pixel_white = pixels[x,y][0] * pixels[x,y][1] * pixels[x,y][2]
+            pixel_white = pixels[x,y][0] + pixels[x,y][1] + pixels[x,y][2]
+            if pixel_white not in whiteness:
+                whiteness[pixel_white] = 0
             whiteness[pixel_white] += 1
     white_keys = [key for key in whiteness.keys() if whiteness[key] != 0]
     white_keys = sorted(white_keys)
