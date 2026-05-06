@@ -222,3 +222,7 @@ __marimo__/
 #Pytorch
 *.pt
 *.csv
+#Image files
+*.jpeg
+*.jpg
+*.png
