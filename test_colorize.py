@@ -16,23 +16,12 @@ def batch_colorize(input_folder: str, output_folder: str) -> None:
         input_path = os.path.join(input_folder, filename)
         output_path = os.path.join(output_folder, filename)
  
-        try:
-            start_time = time.time()
-            img = Image.open(input_path).convert("RGB")
-            pixels = colorize(img)
- 
-            # Reconstruct a saveable image from the pixel grid
-            result = Image.new(img.mode if img.mode == "RGB" else "RGB", img.size)
-            result_pixels = result.load()
-            for x in range(img.width):
-                for y in range(img.height):
-                    result_pixels[x, y] = pixels[x, y]
- 
-            result.save(output_path)
-            print(f"[OK]    {filename}")
-            print(f"Time to colorize: {time.time() - start_time}")
- 
-        except Exception as e:
-            print(f"[ERROR] {filename}: {e}")
+        start_time = time.time()
+        img = Image.open(input_path).convert("RGB")
+        result = colorize(img)
+        result.save(output_path)
+        print(f"[OK]    {filename}")
+        print(f"Time to colorize: {time.time() - start_time}")
+
 
 batch_colorize("test_images","result_images")
